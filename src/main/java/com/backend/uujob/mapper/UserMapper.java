@@ -7,14 +7,14 @@ import org.apache.ibatis.annotations.*;
 import  java.util.List;
 public interface UserMapper extends BaseMapper<User> {
 
-    @Select("select * from user")
+    @Select("select * from seeker")
     List<User> findAll();
 
     //更新一条数据
-    @Update("update user set name = #{name}, password = #{password}, id = #{id}, account = #{account}, phone = #{phone}, character = #{character} where id = #{id}")
+    @Update("update seeker set name = #{name}, password = #{password}, id = #{id}, account = #{account}, phone = #{phone}, character = #{character} where id = #{id}")
     int update(User user);
 
-    @Insert("insert into user(id,account,password,name,phone,character) values (#{id},#{account},#{password},#{name},#{phone},#{character})")
+    @Insert("insert into seeker(id,account,password,name,phone,character) values (#{id},#{account},#{password},#{name},#{phone},#{character})")
     int insert(User user);
 
 }

@@ -4,29 +4,6 @@ import lombok.Data;
 
 @Data
 public class User {
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public short getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(short character) {
-        this.character = character;
-    }
 
     private Integer id;
     private String account;
@@ -34,6 +11,15 @@ public class User {
     private String name;
     private String phone;
     private short character;
+
+    public User(Integer id, String account, String password, String name, String phone, short character) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.character = character;
+    }
 
     public Integer getId() {
         return id;
@@ -58,4 +44,25 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public short getCharacter() {
+        return character;
+    }
+
 }
