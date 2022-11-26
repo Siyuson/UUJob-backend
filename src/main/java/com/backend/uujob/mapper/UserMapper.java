@@ -5,6 +5,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
 
 import  java.util.List;
+
+/**
+ * 用户功能接口
+ *
+ * @author Siyuson
+ */
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("select * from seeker")
