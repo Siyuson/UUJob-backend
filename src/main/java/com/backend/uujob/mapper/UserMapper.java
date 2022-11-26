@@ -12,7 +12,10 @@ import  java.util.List;
  * @author Siyuson
  */
 public interface UserMapper extends BaseMapper<User> {
-
+    /**
+     * 查询所有数据
+     * @return 所有用户数据的json
+     */
     @Select("select * from seeker")
     List<User> findAll();
 

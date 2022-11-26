@@ -1,5 +1,8 @@
 package com.backend.uujob.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName(value = "recruiter")
 public class Recruiter extends User{
     private String company;
     private String position;

@@ -26,12 +26,28 @@ public class UserController {
      */
     @PostMapping
     private boolean save(@RequestBody User user){
-        return userService.saveService(user);
+        return userService.save(user);
     }
     //测试用的Get接口
+
+    /**
+     * 测试查询所有信息
+     *
+     * @return 返回所有用户信息
+     */
     @GetMapping
-    public List<User> index(){
-        List<User> all = userMapper.findAll();
-        return all;
+    public List<User> findAll(){
+        return userService.list();
+    }
+    /**
+     * 删除数据
+     *
+     * @param id 要删除用户id
+     * @return 返回删除结果
+     */
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable Integer id){
+        return userService.removeById(id);
     }
 }

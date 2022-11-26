@@ -3,6 +3,7 @@ package com.backend.uujob.entity;
 import java.util.Date;
 
 public class RecruitTable {
+
     private Integer id;
     private Integer publisherId;
     private String position;

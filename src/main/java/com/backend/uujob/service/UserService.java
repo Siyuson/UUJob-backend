@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class UserService extends ServiceImpl<UserMapper, User> {
-    //引入user相关功能
-    public boolean saveService(User user){
-        //暂时不能用 等待debug
-        return super.saveOrUpdate(user);
-    }
+
+
 }
