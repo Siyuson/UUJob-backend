@@ -26,7 +26,7 @@ public class UserController {
      */
     @PostMapping
     private boolean save(@RequestBody User user){
-        return userService.save(user);
+        return userService.saveOrUpdate(user);
     }
     //测试用的Get接口
 

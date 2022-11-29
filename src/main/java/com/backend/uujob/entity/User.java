@@ -16,6 +16,8 @@ public class User {
     private String name;
     private String phone;
     private short character;
+    private String company;
+    private String position;
 
     public User(Integer id, String account, String password, String name, String phone, short character) {
         this.id = id;
@@ -25,7 +27,9 @@ public class User {
         this.phone = phone;
         this.character = character;
     }
-
+    public User(){
+        ;
+    }
     public Integer getId() {
         return id;
     }
@@ -70,4 +74,19 @@ public class User {
         return character;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 }

@@ -1,5 +1,6 @@
 package com.backend.uujob.mapper;
 
+import com.backend.uujob.controller.dto.UserPasswordDTO;
 import com.backend.uujob.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
@@ -26,4 +27,5 @@ public interface UserMapper extends BaseMapper<User> {
     @Insert("insert into seeker(id,account,password,name,phone,character) values (#{id},#{account},#{password},#{name},#{phone},#{character})")
     int insert(User user);
 
+    int updatePassword(@Param("userPasswordDTO") UserPasswordDTO userPasswordDTO);
 }
