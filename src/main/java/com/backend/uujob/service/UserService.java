@@ -61,6 +61,11 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         return saveOrUpdate(user);
     }
 
+    @Override
+    public boolean isLogin() {
+        return StpUtil.isLogin();
+    }
+
     private User getUserInfo(UserDTO userDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id",userDTO.getId());
