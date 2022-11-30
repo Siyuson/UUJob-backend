@@ -17,4 +17,6 @@ public interface IUserService extends IService<User> {
     boolean saveData(User user);
 
     boolean isLogin();
+
+    void logout();
 }

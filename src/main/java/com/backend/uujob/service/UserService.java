@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
     @Resource
     private UserMapper userMapper;
-
+    //添加token后无法测试接口，完成其他功能点后再加入token
     @Override
     public UserDTO login(LoginDTO loginDTO) {
         UserDTO userDTO = new UserDTO();
@@ -66,6 +66,17 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         return StpUtil.isLogin();
     }
 
+    @Override
+    public void logout() {
+        StpUtil.logout();
+    }
+
+    public short getCharacter(Integer id){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id",id);
+        User one = getOne(queryWrapper);
+        return one.getCharacter();
+    }
     private User getUserInfo(UserDTO userDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id",userDTO.getId());
