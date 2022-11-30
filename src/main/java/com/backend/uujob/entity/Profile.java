@@ -1,10 +1,14 @@
 package com.backend.uujob.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data
+@TableName(value = "profile")
 public class Profile {
+    @TableId
     private Integer id;
     private short age;
     private String sex;

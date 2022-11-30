@@ -1,12 +1,22 @@
 package com.backend.uujob.mapper;
 
+import com.backend.uujob.controller.dto.UserPasswordDTO;
 import com.backend.uujob.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.*;
 
 import  java.util.List;
-public interface UserMapper extends BaseMapper<User> {
 
+/**
+ * 用户功能接口
+ *
+ * @author Siyuson
+ */
+public interface UserMapper extends BaseMapper<User> {
+    /**
+     * 查询所有数据
+     * @return 所有用户数据的json
+     */
     @Select("select * from seeker")
     List<User> findAll();
 
@@ -17,4 +27,5 @@ public interface UserMapper extends BaseMapper<User> {
     @Insert("insert into seeker(id,account,password,name,phone,character) values (#{id},#{account},#{password},#{name},#{phone},#{character})")
     int insert(User user);
 
+    int updatePassword(@Param("userPasswordDTO") UserPasswordDTO userPasswordDTO);
 }
