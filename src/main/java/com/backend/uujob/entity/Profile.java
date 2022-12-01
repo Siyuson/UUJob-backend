@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @TableName(value = "profile")
-public class Profile {
+public class Profile implements Serializable {
     @TableId
     private Integer id;
     private short age;

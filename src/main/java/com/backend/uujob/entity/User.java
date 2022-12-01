@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @TableName(value = "user")
-public class User {
+public class User implements Serializable {
     @TableId
     private Integer id;
     private String account;
@@ -15,18 +17,11 @@ public class User {
     private String password;
     private String name;
     private String phone;
-    private short character;
+    private short role;
     private String company;
     private String position;
 
-    public User(Integer id, String account, String password, String name, String phone, short character) {
-        this.id = id;
-        this.account = account;
-        this.password = password;
-        this.name = name;
-        this.phone = phone;
-        this.character = character;
-    }
+
     public User(){
         ;
     }
@@ -70,8 +65,8 @@ public class User {
         this.password = password;
     }
 
-    public short getCharacter() {
-        return character;
+    public short getRole() {
+        return role;
     }
 
     public String getCompany() {

@@ -2,7 +2,6 @@ package com.backend.uujob.service;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.log.Log;
 import com.backend.uujob.common.Constants;
 import com.backend.uujob.controller.dto.LoginDTO;
 import com.backend.uujob.controller.dto.UserDTO;
@@ -71,11 +70,11 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         StpUtil.logout();
     }
 
-    public short getCharacter(Integer id){
+    public short getRole(Integer id){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id",id);
         User one = getOne(queryWrapper);
-        return one.getCharacter();
+        return one.getRole();
     }
     private User getUserInfo(UserDTO userDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
@@ -85,7 +84,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         User one = getOne(queryWrapper);
         return one;
     }
-    private User loginUserInfo(LoginDTO loginDTO){
+    public User loginUserInfo(LoginDTO loginDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account",loginDTO.getAccount());
         queryWrapper.eq("password", loginDTO.getPassword());

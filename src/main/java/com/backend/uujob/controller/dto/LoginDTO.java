@@ -9,4 +9,8 @@ public class LoginDTO {
 
     private String password;
 
+    public LoginDTO(String account, String password) {
+        this.account = account;
+        this.password = password;
+    }
 }

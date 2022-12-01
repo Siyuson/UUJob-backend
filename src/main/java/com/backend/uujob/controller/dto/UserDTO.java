@@ -1,6 +1,5 @@
 package com.backend.uujob.controller.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
@@ -16,7 +15,7 @@ public class UserDTO {
 
     private String phone;
 
-    private short character;
+    private short role;
 
     private String company;
 
