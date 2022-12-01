@@ -13,19 +13,16 @@ import  java.util.List;
  * @author Siyuson
  */
 public interface UserMapper extends BaseMapper<User> {
-    /**
-     * 查询所有数据
-     * @return 所有用户数据的json
-     */
-    @Select("select * from seeker")
-    List<User> findAll();
-
-    //更新一条数据
-    @Update("update seeker set name = #{name}, password = #{password}, id = #{id}, account = #{account}, phone = #{phone}, character = #{character} where id = #{id}")
-    int update(User user);
-
-    @Insert("insert into seeker(id,account,password,name,phone,character) values (#{id},#{account},#{password},#{name},#{phone},#{character})")
-    int insert(User user);
-
     int updatePassword(@Param("userPasswordDTO") UserPasswordDTO userPasswordDTO);
+//    @Select("select * from user")
+//    List<User> findAll();
+//
+//    //更新一条数据
+//    @Update("update user set name = #{name}, password = #{password}, id = #{id}, account = #{account}, phone = #{phone}, role = #{role} where id = #{id}")
+//    int update(User user);
+//
+//    @Insert("insert into user(id,account,password,name,phone,role) values (#{id},#{account},#{password},#{name},#{phone},#{role})")
+//    int insert(User user);
+//
+//    int updatePassword(@Param("userPasswordDTO") UserPasswordDTO userPasswordDTO);
 }

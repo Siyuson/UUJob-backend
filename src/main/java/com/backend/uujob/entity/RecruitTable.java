@@ -2,9 +2,10 @@ package com.backend.uujob.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 @Data
-public class RecruitTable {
+public class RecruitTable  implements Serializable {
 
     private Integer id;
     private Integer publisherId;
