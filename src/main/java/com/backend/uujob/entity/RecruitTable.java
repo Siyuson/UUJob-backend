@@ -1,12 +1,15 @@
 package com.backend.uujob.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 @Data
+@TableName(value = "recruittable")
 public class RecruitTable  implements Serializable {
-
+    @TableId
     private Integer id;
     private Integer publisherId;
     private String position;
@@ -29,5 +32,6 @@ public class RecruitTable  implements Serializable {
     }
     public RecruitTable(Integer id){
         this.publisherId = id;
+        this.status = 0;
     }
 }
