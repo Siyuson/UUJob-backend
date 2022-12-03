@@ -84,4 +84,5 @@ public class UserController {
     public boolean delete(@PathVariable Integer id){
         return userService.removeById(id);
     }
+
 }
