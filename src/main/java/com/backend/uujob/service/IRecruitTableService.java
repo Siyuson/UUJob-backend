@@ -10,5 +10,4 @@ public interface IRecruitTableService extends IService<RecruitTable> {
     RecruitTable postRecruitTable(RecruitTableDTO recruitTableDTO);
     List<RecruitTable> getPostRecruitTable();
     List<RecruitTable> getAllRecruitTable();
-
 }

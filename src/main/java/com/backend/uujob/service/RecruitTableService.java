@@ -43,6 +43,8 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
         return list;
     }
 
+
+
     @Override
     public List<RecruitTable> getAllRecruitTable() {
         List<RecruitTable> list = list();
