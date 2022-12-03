@@ -1,7 +1,8 @@
 package com.backend.uujob.controller.dto;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.util.Date;
 public class RecruitTableDTO {
     private Integer id;
     private String position;
@@ -9,4 +10,5 @@ public class RecruitTableDTO {
     private Date date;
     private short status;
     private String description;
+
 }
