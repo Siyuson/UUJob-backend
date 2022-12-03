@@ -12,6 +12,7 @@ import com.backend.uujob.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.annotation.Resource;
 
@@ -23,9 +24,8 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Override
     public UserDTO login(LoginDTO loginDTO) {
         UserDTO userDTO = new UserDTO();
-        User one = loginUserInfo(loginDTO);
-        if (one != null && one.getAccount().equals(one.getAccount()) &&
-                one.getPassword().equals(one.getPassword())) {
+        User one = loginUserInfo(loginDTO);//根据登录信息进行查找
+        if (one != null ) {//改进：使用高级筛选
             StpUtil.login(one.getId());
             BeanUtil.copyProperties(one,userDTO,true);
             return userDTO;
@@ -81,15 +81,13 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         queryWrapper.eq("id",userDTO.getId());
         queryWrapper.eq("account",userDTO.getAccount());
         queryWrapper.eq("password", userDTO.getPassword());
-        User one = getOne(queryWrapper);
-        return one;
+        return getOne(queryWrapper);
     }
     public User loginUserInfo(LoginDTO loginDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account",loginDTO.getAccount());
         queryWrapper.eq("password", loginDTO.getPassword());
-        User one = getOne(queryWrapper);
-        return one;
+        return getOne(queryWrapper);
     }
 
 }
