@@ -3,6 +3,7 @@ package com.backend.uujob.controller.dto;
 import lombok.Data;
 
 import java.util.Date;
+
 @Data
 public class RecruitTableDTO {
     private Integer id;
@@ -10,4 +11,5 @@ public class RecruitTableDTO {
     private String salary;
     private Date date;
     private String description;
+
 }

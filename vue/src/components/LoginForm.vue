@@ -9,7 +9,7 @@
   >
     <el-form-item label="用户名" prop="userName">
       <el-input
-        v-model="loginUser.userName"
+        v-model="loginUser.account"
         placeholder="Enter your user name..."
       ></el-input>
     </el-form-item>
@@ -69,9 +69,9 @@ export default {
           alert("submit!");
           axios({
             method: "post",
-            url: "",
+            url: "http://localhost:9090/user/login",
             data: {
-              userName: ctx.loginUser.userName,
+              account: ctx.loginUser.account,
               password: ctx.loginUser.password,
             },
           }).then(function (response) {

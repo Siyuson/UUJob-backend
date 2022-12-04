@@ -30,16 +30,26 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
         }
     }
 
+    /**
+     * 查询登录用户所发布过的招聘信息
+     * @return
+     */
     @Override
     public List<RecruitTable> getPostRecruitTable() {
         int loginIdAsInt = StpUtil.getLoginIdAsInt();
         QueryWrapper<RecruitTable> wrapper = new QueryWrapper<>();
-        wrapper.eq("publisherid",loginIdAsInt);
+        wrapper.eq("publisher_id",loginIdAsInt);
         List<RecruitTable> list = list(wrapper);
         return list;
     }
-    public List<RecruitTable> getAllRecruitTable(){
-        List<RecruitTable> list = list();
+
+
+
+    @Override
+    public List<RecruitTable> getAllRecruitTable() {//修改 检查发布状态
+        QueryWrapper<RecruitTable> wrapper = new QueryWrapper<>();
+        wrapper.eq("status",1);
+        List<RecruitTable> list = list(wrapper);
         return list;
     }
 }
