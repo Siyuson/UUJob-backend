@@ -1,5 +1,6 @@
 package com.backend.uujob.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.backend.uujob.common.Constants;
 import com.backend.uujob.common.Result;
@@ -38,8 +39,10 @@ public class UserController {
      */
 
     @PostMapping
-    private boolean save(@RequestBody User user){
-        return userService.saveOrUpdate(user);
+    private boolean save(@RequestBody UserDTO userDTO){
+        User one=new User();
+        BeanUtil.copyProperties(one,userDTO,true);
+        return userService.saveOrUpdate(one);
     }
     //测试用的Get接口
 

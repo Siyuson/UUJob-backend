@@ -24,9 +24,11 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
     @Override
     public UserDTO login(LoginDTO loginDTO) {
         UserDTO userDTO = new UserDTO();
-        User one = loginUserInfo(loginDTO);//根据登录信息进行查找
-        if (one != null ) {//改进：使用高级筛选
+        User one = loginUserInfo(loginDTO);
+        if (one != null) {
+            System.out.println(one);
             StpUtil.login(one.getId());
+            System.out.println(StpUtil.isLogin());//??
             BeanUtil.copyProperties(one,userDTO,true);
             return userDTO;
         } else {
@@ -36,10 +38,10 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
 
     @Override
     public User register(UserDTO userDTO) {
-        User one = getUserInfo(userDTO);
+        User one = loginUserInfo(new LoginDTO(userDTO.getAccount(),userDTO.getPassword()));
         if (one == null) {
             one = new User();
-            BeanUtil.copyProperties(userDTO, one, true);
+            BeanUtil.copyProperties(one,userDTO,true);
             save(one); // 把copy完的用户对象存储到数据库
         } else {
             throw new ServiceException(Constants.CODE_600, "用户已存在");
@@ -70,19 +72,14 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         StpUtil.logout();
     }
 
+
     public short getRole(Integer id){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id",id);
         User one = getOne(queryWrapper);
         return one.getRole();
     }
-    private User getUserInfo(UserDTO userDTO){
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id",userDTO.getId());
-        queryWrapper.eq("account",userDTO.getAccount());
-        queryWrapper.eq("password", userDTO.getPassword());
-        return getOne(queryWrapper);
-    }
+
     public User loginUserInfo(LoginDTO loginDTO){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("account",loginDTO.getAccount());
