@@ -27,7 +27,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         User one = loginUserInfo(loginDTO);
         if (one != null) {
             System.out.println(one);
-            StpUtil.login(one.getAccount());
+            StpUtil.login(one.getId());
             System.out.println(StpUtil.isLogin());//??
             BeanUtil.copyProperties(one,userDTO,true);
             return userDTO;
