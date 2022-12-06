@@ -9,22 +9,24 @@ import com.backend.uujob.service.impl.RecruitTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping("/recruitTable")
 public class RecruitTableController {
+
     private IRecruitTableService recruitTableService;
     @Autowired
     public RecruitTableController(RecruitTableService recruitTableService) {
         this.recruitTableService = recruitTableService;
     }
 
-    @GetMapping("/all")
-    public List<RecruitTable> test2(){
+    @GetMapping("/allTable")
+    public List<RecruitTable> allRecruitTable(){
         return recruitTableService.getAllRecruitTable();
     }
-    @GetMapping("/mypost")
+    @GetMapping("/myPost")
     public List<RecruitTable> myPost(){
         return recruitTableService.getPostRecruitTable();
     }
