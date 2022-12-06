@@ -1,4 +1,4 @@
-package com.backend.uujob.service;
+package com.backend.uujob.service.impl;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import com.backend.uujob.common.Constants;
@@ -7,6 +7,8 @@ import com.backend.uujob.controller.dto.ProfileDTO;
 import com.backend.uujob.entity.Profile;
 import com.backend.uujob.exception.ServiceException;
 import com.backend.uujob.mapper.ProfileMapper;
+import com.backend.uujob.service.IProfileService;
+import com.backend.uujob.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,7 @@ import java.util.List;
 @Service
 public class ProfileService extends ServiceImpl<ProfileMapper, Profile> implements IProfileService {
 
-    private UserService userService;
+    private final IUserService userService;
     @Autowired
     public ProfileService(UserService userService) {
         this.userService = userService;
@@ -23,8 +25,8 @@ public class ProfileService extends ServiceImpl<ProfileMapper, Profile> implemen
 
     @Override
     public Profile postProfile(ProfileDTO profileDTO) {
-        int loginIdAsInt = 11; //StpUtil.getLoginIdAsInt();
-        if (RoleEnum.ROLE_SEEKER.ordinal() == userService.getRole(loginIdAsInt)) { //检查用户是否有发布权限，后续可能用satoken的函数进行替代
+        StpUtil.login(11); //StpUtil.getLoginIdAsInt();
+        if (RoleEnum.ROLE_SEEKER.ordinal() == userService.getRoleById(StpUtil.getLoginIdAsInt())) { //检查用户是否有发布权限，后续可能用satoken的函数进行替代
             //保存profile
             Profile profile = new Profile();
             BeanUtil.copyProperties(profileDTO,profile,true);
@@ -42,11 +44,9 @@ public class ProfileService extends ServiceImpl<ProfileMapper, Profile> implemen
         int loginIdAsInt = StpUtil.getLoginIdAsInt();
         QueryWrapper<Profile> wrapper = new QueryWrapper<>();
         wrapper.eq("publisherid",loginIdAsInt);
-        List<Profile> list = list(wrapper);
-        return list;
+        return list(wrapper);
     }
     public List<Profile> getAllProfile(){
-        List<Profile> list = list();
-        return list;
+        return list();
     }
 }

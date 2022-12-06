@@ -1,4 +1,4 @@
-package com.backend.uujob.service;
+package com.backend.uujob.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
@@ -8,13 +8,12 @@ import com.backend.uujob.controller.dto.RecruitTableDTO;
 import com.backend.uujob.entity.RecruitTable;
 import com.backend.uujob.exception.ServiceException;
 import com.backend.uujob.mapper.RecruitTableMapper;
+import com.backend.uujob.service.IRecruitTableService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Date;
 import java.util.List;
 @Service
 public class RecruitTableService extends ServiceImpl<RecruitTableMapper, RecruitTable> implements IRecruitTableService {
@@ -30,10 +29,7 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
         if (RoleEnum.ROLE_RECRUITER.ordinal() == userService.getRole(loginIdAsInt)) { //检查用户是否有发布权限，后续可能用satoken的函数进行替代
             RecruitTable recruitTable = new RecruitTable(loginIdAsInt);
             BeanUtil.copyProperties(recruitTableDTO, recruitTable, true);
-            recruitTable.setId(0);//自动递增而不指定
-            recruitTable.setDate(new Date());//当前时间
             recruitTable.setStatus((short)1);//默认已审核
-            recruitTable.setPublisher_id(5);//当前用户id  loginIdAsInt
             save(recruitTable);
             return recruitTable;
         } else {

@@ -2,19 +2,21 @@ import { ref } from "vue";
 
 //用户注册数据接口
 interface RegisterUser {
+  account: string;
   name: string;
-  email: string;
+  phone: string;
   password: string;
   password2: string;
-  role: string;
+  role: number;
 }
 
 export const registerUser = ref<RegisterUser>({
+  account:"",
   name: "",
-  email: "",
+  phone: "",
   password: "",
   password2: "",
-  role: "",
+  role: 0,
 });
 
 //注册规则接口
@@ -29,7 +31,7 @@ interface RegisterRules {
     message: string;
     trigger: string;
   })[];
-  email: {
+  account: {
     type: string;
     message: string;
     required: boolean;
@@ -86,10 +88,10 @@ export const registerRules = ref<RegisterRules>({
       trigger: "blur",
     },
   ],
-  email: [
+  account: [
     {
-      type: "email",
-      message: "Email is incorrect...",
+      type: "account",
+      message: "account is incorrect...",
       required: true,
       trigger: "blur",
     },

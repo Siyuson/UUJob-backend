@@ -7,11 +7,8 @@ import com.backend.uujob.common.Result;
 import com.backend.uujob.controller.dto.LoginDTO;
 import com.backend.uujob.controller.dto.UserDTO;
 import com.backend.uujob.entity.User;
-import com.backend.uujob.mapper.UserMapper;
 import com.backend.uujob.service.IUserService;
-import com.backend.uujob.service.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,15 +25,9 @@ public class UserController {
 
 
     @PostMapping("/login")
-    public UserDTO login(@RequestBody LoginDTO loginDTO){
+    public Result login(@RequestBody LoginDTO loginDTO){
         return userService.login(loginDTO);
     }
-    /**
-     * 用户数据更新，@RequestBody将前台的json对象转化为java对象
-     *
-     * @param user 用户实体类
-     * @reurn 返回插入或更新结果
-     */
 
     @PostMapping
     private boolean save(@RequestBody UserDTO userDTO){
