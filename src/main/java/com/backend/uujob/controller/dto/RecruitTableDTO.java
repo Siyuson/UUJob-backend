@@ -12,5 +12,4 @@ public class RecruitTableDTO {
     private String salary;
     private Date date;
     private String description;
-
 }
