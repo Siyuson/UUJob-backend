@@ -20,7 +20,7 @@ public class RecruitTable  implements Serializable {
     private short status;
     private String description;
 
-    public RecruitTable(Integer id, Integer publisher_id, String title, String position, String salary, Date date, String description) {
+    public RecruitTable(Integer id, Integer publisher_id, String title, String position, String salary, Date date, short status, String description) {
         this.id = id;
         this.publisher_id = publisher_id;
         this.title = title;
@@ -28,7 +28,7 @@ public class RecruitTable  implements Serializable {
         this.salary = salary;
         this.date = date;
         this.description = description;
-        this.status = 0;
+        this.status = status;
     }
 
     public RecruitTable(Integer publisher_id, String title, String position, String salary, Date date, short status, String description) {

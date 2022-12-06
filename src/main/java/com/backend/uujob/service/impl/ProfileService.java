@@ -41,7 +41,7 @@ public class ProfileService extends ServiceImpl<ProfileMapper, Profile> implemen
 
     @Override
     public List<Profile> getProfile() {
-        int loginIdAsInt = StpUtil.getLoginIdAsInt();
+        int loginIdAsInt = 5;//StpUtil.getLoginIdAsInt();
         QueryWrapper<Profile> wrapper = new QueryWrapper<>();
         wrapper.eq("publisherid",loginIdAsInt);
         return list(wrapper);
