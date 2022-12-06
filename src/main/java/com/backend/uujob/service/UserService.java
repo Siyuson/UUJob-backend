@@ -41,7 +41,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         User one = loginUserInfo(new LoginDTO(userDTO.getAccount(),userDTO.getPassword()));
         if (one == null) {
             one = new User();
-            BeanUtil.copyProperties(one,userDTO,true);
+            BeanUtil.copyProperties(userDTO,one,true);
             save(one); // 把copy完的用户对象存储到数据库
         } else {
             throw new ServiceException(Constants.CODE_600, "用户已存在");
