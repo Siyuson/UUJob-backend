@@ -13,7 +13,7 @@ public class RecruitTable  implements Serializable {
     @TableId(type= IdType.AUTO)
     private Integer id;
     private Integer publisher_id;
-    private String title,
+    private String title;
     private String position;
     private String salary;
     private Date date;
