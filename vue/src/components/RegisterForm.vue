@@ -7,10 +7,16 @@
     label-width="100px"
     class="registerForm sign-up-form"
   >
-    <el-form-item label="用户名" prop="name">
+    <el-form-item label="账号" prop="account">
       <el-input
-        v-model="registerUser.name"
-        placeholder="Enter UserName..."
+        v-model="registerUser.account"
+        placeholder="Enter Account..."
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="姓名" prop="name">
+      <el-input
+          v-model="registerUser.name"
+          placeholder="Enter UserName..."
       ></el-input>
     </el-form-item>
     <el-form-item label="密码" prop="password">
@@ -29,20 +35,14 @@
     </el-form-item>
     <el-form-item label="电话号码" prop="phoneNumber">
       <el-input
-        v-model="registerUser.phoneNumber"
+        v-model="registerUser.phone"
         placeholder="Enter PhoneNumber..."
-      ></el-input>
-    </el-form-item>
-    <el-form-item label="身份证号" prop="passengerId">
-      <el-input
-        v-model="registerUser.passengerId"
-        placeholder="Enter PassengerId..."
       ></el-input>
     </el-form-item>
     <el-form-item label="选择身份">
       <el-select v-model="registerUser.role" placeholder="请选择身份">
-        <el-option label="求职者" value="seeker"></el-option>
-        <el-option label="招聘者" value="recruiter"></el-option>
+        <el-option label="求职者" value=0></el-option>
+        <el-option label="招聘者" value=1></el-option>
       </el-select>
     </el-form-item>
 
@@ -86,12 +86,13 @@ export default {
           alert("submit!");
           axios({
             method: "post",
-            url: "",
+            url: "http://localhost:9090/user/register",
             data: {
-              userName: ctx.registerUser.name,
-              passWord: ctx.registerUser.password,
-              phoneNumber: ctx.registerUser.phoneNumber,
-              passengerId : ctx.registerUser.passengerId,
+              account: ctx.registerUser.account,
+              password: ctx.registerUser.password,
+              name: ctx.registerUser.name,
+              phone: ctx.registerUser.phone,
+              role: ctx.registerUser.role
             },
           }).then(function(response){
             // 注册成功

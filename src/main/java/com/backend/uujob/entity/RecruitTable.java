@@ -39,6 +39,8 @@ public class RecruitTable  implements Serializable {
     }
 
     public RecruitTable(Integer publisher_id){
+        this.id = 0;//自动递增而不指定
+        this.date = new Date();//当前时间
         this.publisher_id = publisher_id;
         this.status = 0;
     }

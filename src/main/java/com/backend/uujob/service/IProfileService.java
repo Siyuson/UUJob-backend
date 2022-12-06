@@ -12,4 +12,5 @@ public interface IProfileService extends IService<Profile> {
     Profile postProfile(@RequestBody ProfileDTO profileDTO);
     List<Profile> getProfile();
 
+    List<Profile> getAllProfile();
 }

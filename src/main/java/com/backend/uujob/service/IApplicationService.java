@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public interface IApplicationService extends IService<Application> {
     Application postApplication(ApplicationDTO applicationDTO);
-
+    boolean deleteApplicationById(int profileId);
 }
