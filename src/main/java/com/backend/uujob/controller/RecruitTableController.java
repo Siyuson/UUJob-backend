@@ -9,11 +9,13 @@ import com.backend.uujob.service.impl.RecruitTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping("/recruitTable")
 public class RecruitTableController {
+
     private IRecruitTableService recruitTableService;
     @Autowired
     public RecruitTableController(RecruitTableService recruitTableService) {
