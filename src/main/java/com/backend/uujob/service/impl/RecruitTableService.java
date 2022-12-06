@@ -56,7 +56,6 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
     public List<RecruitTable> getAllRecruitTable() {//修改 检查发布状态
         QueryWrapper<RecruitTable> wrapper = new QueryWrapper<>();
         wrapper.eq("status",1);
-        List<RecruitTable> list = list(wrapper);
-        return list;
+        return list(wrapper);
     }
 }
