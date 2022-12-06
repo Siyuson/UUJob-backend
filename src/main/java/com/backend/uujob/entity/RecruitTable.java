@@ -13,15 +13,17 @@ public class RecruitTable  implements Serializable {
     @TableId(type= IdType.AUTO)
     private Integer id;
     private Integer publisher_id;
+    private String title;
     private String position;
     private String salary;
     private Date date;
     private short status;
     private String description;
 
-    public RecruitTable(Integer id, Integer publisher_id, String position, String salary, Date date, String description) {
+    public RecruitTable(Integer id, Integer publisher_id, String title, String position, String salary, Date date, String description) {
         this.id = id;
         this.publisher_id = publisher_id;
+        this.title = title;
         this.position = position;
         this.salary = salary;
         this.date = date;
@@ -29,8 +31,9 @@ public class RecruitTable  implements Serializable {
         this.status = 0;
     }
 
-    public RecruitTable(Integer publisher_id, String position, String salary, Date date, short status, String description) {
+    public RecruitTable(Integer publisher_id, String title, String position, String salary, Date date, short status, String description) {
         this.publisher_id = publisher_id;
+        this.title = title;
         this.position = position;
         this.salary = salary;
         this.date = date;
