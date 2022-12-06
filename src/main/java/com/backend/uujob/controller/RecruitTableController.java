@@ -20,8 +20,8 @@ public class RecruitTableController {
         this.recruitTableService = recruitTableService;
     }
 
-    @GetMapping("/all")
-    public List<RecruitTable> test2(){
+    @GetMapping("/home")
+    public List<RecruitTable> allRecruitTable(){
         return recruitTableService.getAllRecruitTable();
     }
     @GetMapping("/mypost")
