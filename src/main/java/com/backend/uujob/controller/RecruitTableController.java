@@ -27,7 +27,7 @@ public class RecruitTableController {
     }
 
     @PostMapping("")
-    public Result postRT(@RequestBody RecruitTableDTO recruitTableDTO){//有效数据仅含position、salary、description
+    public Result postRT(@RequestBody RecruitTableDTO recruitTableDTO){//有效数据仅含title、position、salary、description
         try{
             RecruitTable recruitTable = recruitTableService.postRecruitTable(recruitTableDTO);
             return Result.success(recruitTable);
