@@ -36,7 +36,7 @@ public class Result {
      * @return 返回封装的结果
      */
     public static Result success(Object data) {
-        return new Result(Constants.CODE_200, "", data);
+        return new Result(Constants.CODE_200, "success", data);
     }
 
     /**
