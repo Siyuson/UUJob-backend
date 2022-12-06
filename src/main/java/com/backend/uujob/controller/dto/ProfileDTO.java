@@ -9,6 +9,6 @@ public class ProfileDTO {
     private String sex;
     private String email;
     private Integer seeker_id;
-    private short edu;
+    private String edu;
     private String description;
 }

@@ -43,7 +43,7 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
      */
     @Override
     public List<RecruitTable> getPostRecruitTable() {
-        int loginIdAsInt = StpUtil.getLoginIdAsInt();
+        int loginIdAsInt = 11;//StpUtil.getLoginIdAsInt();
         QueryWrapper<RecruitTable> wrapper = new QueryWrapper<>();
         wrapper.eq("publisher_id",loginIdAsInt);
         List<RecruitTable> list = list(wrapper);
