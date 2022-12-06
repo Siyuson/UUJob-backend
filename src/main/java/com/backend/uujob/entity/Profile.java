@@ -17,10 +17,10 @@ public class Profile implements Serializable {
     private String sex;
     private String email;
     private Integer seeker_id;
-    private short edu;
+    private String edu;
     private String description;
 
-    public Profile(short age, String sex, String email, Integer seeker_id, short edu, String description) {
+    public Profile(short age, String sex, String email, Integer seeker_id, String edu, String description) {
         this.age = age;
         this.sex = sex;
         this.email = email;
