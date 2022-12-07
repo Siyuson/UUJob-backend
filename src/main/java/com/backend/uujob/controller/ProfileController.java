@@ -1,7 +1,6 @@
 package com.backend.uujob.controller;
 
 import com.backend.uujob.common.Result;
-import com.backend.uujob.controller.dto.ApplicationDTO;
 import com.backend.uujob.controller.dto.ProfileDTO;
 import com.backend.uujob.entity.Application;
 import com.backend.uujob.entity.Profile;
@@ -34,12 +33,12 @@ public class ProfileController {
 
     @Transactional
     @PostMapping("/{recruitTable_id}")
-    public Result postProfile(@PathVariable Integer recruitTable_id, @RequestBody ProfileDTO profileDTO){//id和seeker_id会被忽略
+    public Result postProfile(@PathVariable Integer recruitTable_id, @RequestBody ProfileDTO profileDTO){
         try{
             Profile profile = profileService.postProfile(profileDTO);
-            ApplicationDTO a = new ApplicationDTO(profile.getId(), recruitTable_id,new Date());
-            Application application = applicationService.postApplication(a);
-            return Result.success(application);
+            Application a = new Application(profile.getId(), recruitTable_id,new Date());
+            applicationService.postApplication(a);
+            return Result.success(profile);
         }catch(ServiceException e){
             return Result.error(e.getCode(), e.getMessage());
         }

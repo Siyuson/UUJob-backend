@@ -10,9 +10,8 @@ import java.util.Date;
 @Data
 @TableName(value = "recruittable")
 public class RecruitTable  implements Serializable {
-    @TableId(type = IdType.AUTO)
+    @TableId(type= IdType.AUTO)
     private Integer id;
-    private Integer publisher_id;
     private String title;
     private String position;
     private String salary;
@@ -20,9 +19,8 @@ public class RecruitTable  implements Serializable {
     private short status;
     private String description;
 
-    public RecruitTable(Integer id, Integer publisher_id, String title, String position, String salary, Date date, short status, String description) {
+    public RecruitTable(Integer id, String title, String position, String salary, Date date, short status, String description) {
         this.id = id;
-        this.publisher_id = publisher_id;
         this.title = title;
         this.position = position;
         this.salary = salary;
@@ -31,8 +29,7 @@ public class RecruitTable  implements Serializable {
         this.status = status;
     }
 
-    public RecruitTable(Integer publisher_id, String title, String position, String salary, Date date, short status, String description) {
-        this.publisher_id = publisher_id;
+    public RecruitTable(String title, String position, String salary, Date date, short status, String description) {
         this.title = title;
         this.position = position;
         this.salary = salary;
@@ -41,10 +38,9 @@ public class RecruitTable  implements Serializable {
         this.description = description;
     }
 
-    public RecruitTable(Integer publisher_id){
+    public RecruitTable(){
         this.id = 0;//自动递增而不指定
         this.date = new Date();//当前时间
-        this.publisher_id = publisher_id;
         this.status = 0;
     }
 }
