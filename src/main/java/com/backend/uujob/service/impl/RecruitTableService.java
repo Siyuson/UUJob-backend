@@ -1,6 +1,5 @@
 package com.backend.uujob.service.impl;
 
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import com.backend.uujob.common.Constants;
 import com.backend.uujob.common.RoleEnum;
@@ -9,23 +8,28 @@ import com.backend.uujob.entity.Recruit;
 import com.backend.uujob.entity.RecruitTable;
 import com.backend.uujob.exception.ServiceException;
 import com.backend.uujob.mapper.RecruitTableMapper;
+import com.backend.uujob.mapper.UserMapper;
 import com.backend.uujob.service.IRecruitService;
 import com.backend.uujob.service.IRecruitTableService;
-import com.backend.uujob.service.IUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 public class RecruitTableService extends ServiceImpl<RecruitTableMapper, RecruitTable> implements IRecruitTableService {
     private final UserService userService;//为了getRole，不用接口回调
+    @Resource
+    private final RecruitTableMapper recruitTableMapper;//为了getRole，不用接口回调
     private final IRecruitService recruitService;
     @Autowired
-    public RecruitTableService(UserService userService,IRecruitService recruitService) {
+    public RecruitTableService(UserService userService, RecruitTableMapper recruitTableMapper, IRecruitService recruitService) {
         this.userService = userService;
+        this.recruitTableMapper = recruitTableMapper;
         this.recruitService=recruitService;
     }
 
@@ -36,7 +40,10 @@ public class RecruitTableService extends ServiceImpl<RecruitTableMapper, Recruit
             RecruitTable recruitTable = new RecruitTable();
             BeanUtil.copyProperties(recruitTableDTO, recruitTable, true);
             recruitTable.setStatus((short)1);//默认已审核
-            save(recruitTable);
+            recruitTable.setDate(new Date());//不能写到构造函数里，会被copyProperties覆盖
+            recruitTable.setId(0);
+            recruitTableMapper.insert(recruitTable);//为了拿到自增后的id，不能用save
+            //System.out.println(recruitTable);
             Recruit recruit=new Recruit(0,loginIdAsInt,recruitTable.getId());
             recruitService.postRecruit(recruit);
             return recruitTable;

@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @TableName(value = "recruittable")
 public class RecruitTable  implements Serializable {
-    @TableId
+    @TableId(type= IdType.AUTO)
     private Integer id;
     private String title;
     private String position;

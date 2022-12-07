@@ -10,6 +10,7 @@ import com.backend.uujob.entity.RecruitTable;
 import com.backend.uujob.entity.Seek;
 import com.backend.uujob.exception.ServiceException;
 import com.backend.uujob.mapper.ProfileMapper;
+import com.backend.uujob.mapper.SeekMapper;
 import com.backend.uujob.service.IProfileService;
 import com.backend.uujob.service.ISeekService;
 import com.backend.uujob.service.IUserService;
@@ -25,21 +26,23 @@ public class ProfileService extends ServiceImpl<ProfileMapper, Profile> implemen
 
     private final IUserService userService;
     private final ISeekService seekService;
+    private final ProfileMapper profileMapper;
     @Autowired
-    public ProfileService(IUserService userService, ISeekService seekService) {
+    public ProfileService(IUserService userService, ISeekService seekService,ProfileMapper profileMapper) {
         this.userService = userService;
         this.seekService=seekService;
+        this.profileMapper=profileMapper;
     }
 
     @Override
     public Profile postProfile(ProfileDTO profileDTO) {
         int loginIdAsInt=11;//StpUtil.getLoginIdAsInt();
-        if (RoleEnum.ROLE_SEEKER.ordinal() == userService.getRoleById(StpUtil.getLoginIdAsInt())) { //检查用户是否有发布权限，后续可能用satoken的函数进行替代
+        if (RoleEnum.ROLE_SEEKER.ordinal() == userService.getRoleById(loginIdAsInt)) { //检查用户是否有发布权限，后续可能用satoken的函数进行替代
             //保存profile
             Profile profile = new Profile();
             BeanUtil.copyProperties(profileDTO,profile,true);
             profile.setId(0);//自动递增而不指定
-            save(profile);
+            profileMapper.insert(profile);
             Seek seek=new Seek(0,loginIdAsInt, profile.getId());
             seekService.postSeek(seek);
             return profile;
