@@ -12,6 +12,7 @@ import  java.util.List;
  *
  * @author Siyuson
  */
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
     int updatePassword(@Param("userPasswordDTO") UserPasswordDTO userPasswordDTO);
 //    @Select("select * from user")
